@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Luxury Notes</title>
+
+  <!-- Luxury Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .class-btn {
+      height: 100px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .class-btn:hover {
+      transform: perspective(800px) rotateX(10deg) rotateY(10deg) scale(1.08);
+      box-shadow: 0 25px 50px rgba(0,255,255,0.6);
+    }
+
+    .selected {
+      background: rgba(0,255,255,0.6);
+    }
+
+    /* STREAM BOX */
+    .streams {
+      display: none;
+      padding: 20px;
+    }
+
+    .stream-btn {
+      margin: 10px;
+      padding: 15px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.1);
+      display: inline-block;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .stream-btn:hover {
+      transform: scale(1.1);
+      background: rgba(0,255,255,0.4);
+    }
+
+    .next-btn {
+      margin: 20px;
+      padding: 15px 25px;
+      border-radius: 30px;
+      border: none;
+      background: cyan;
+      color: black;
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>✨ Select Your Class</h1>
+
+<div class="container">
+  <div class="class-btn" onclick="selectClass(this,1)">Class 1</div>
+  <div class="class-btn" onclick="selectClass(this,2)">Class 2</div>
+  <div class="class-btn" onclick="selectClass(this,3)">Class 3</div>
+  <div class="class-btn" onclick="selectClass(this,4)">Class 4</div>
+  <div class="class-btn" onclick="selectClass(this,5)">Class 5</div>
+  <div class="class-btn" onclick="selectClass(this,6)">Class 6</div>
+  <div class="class-btn" onclick="selectClass(this,7)">Class 7</div>
+  <div class="class-btn" onclick="selectClass(this,8)">Class 8</div>
+  <div class="class-btn" onclick="selectClass(this,9)">Class 9</div>
+  <div class="class-btn" onclick="selectClass(this,10)">Class 10</div>
+  <div class="class-btn" onclick="selectClass(this,11)">Class 11</div>
+  <div class="class-btn" onclick="selectClass(this,12)">Class 12</div>
+</div>
+
+<!-- STREAM SECTION -->
+<div class="streams" id="streams">
+  <h2>Select Stream</h2>
+  <div class="stream-btn" onclick="selectStream(this,'Science')">🔬 Science</div>
+  <div class="stream-btn" onclick="selectStream(this,'Commerce')">💼 Commerce</div>
+  <div class="stream-btn" onclick="selectStream(this,'Arts')">🎨 Arts</div>
+</div>
+
+<button class="next-btn" id="nextBtn" onclick="goNext()">Next ➡️</upward>
+
+<script>
+let selectedClass = null;
+let selectedStream = null;
+
+function selectClass(el, cls) {
+  selectedClass = cls;
+
+  document.querySelectorAll(".class-btn").forEach(btn => {
+    btn.classList.remove("selected");
+  });
+
+  el.classList.add("selected");
+
+  // show streams only for 11 & 12
+  if (cls == 11 || cls == 12) {
+    document.getElementById("streams").style.display = "block";
+    document.getElementById("nextBtn").style.display = "none";
+  } else {
+    document.getElementById("streams").style.display = "none";
+    document.getElementById("nextBtn").style.display = "inline-block";
+  }
+}
+
+function selectStream(el, stream) {
+  selectedStream = stream;
+
+  document.querySelectorAll(".stream-btn").forEach(btn => {
+    btn.style.background = "rgba(255,255,255,0.1)";
+  });
+
+  el.style.background = "rgba(0,255,255,0.6)";
+
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function goNext() {
+  if (selectedClass == 11 || selectedClass == 12) {
+    window.location.href = "next.html?class=" + selectedClass + "&stream=" + selectedStream;
+  } else {
+    window.location.href = "next.html?class=" + selectedClass;
+  }
+}
+</script>
+
+</body>
+</html>

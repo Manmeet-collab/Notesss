@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+
+</html><!DOCTYPE html>
+<html>
+<head>
+  <title>Subjects</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      font-size: 18px;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: perspective(800px) rotateX(10deg) rotateY(10deg) scale(1.08);
+      box-shadow: 0 25px 60px rgba(0,255,255,0.7);
+    }
+
+    .back-btn {
+      margin: 20px;
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: none;
+      background: cyan;
+      color: black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1 id="title">Loading...</h1>
+
+<div class="container" id="content"></div>
+
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+<script>
+let params = new URLSearchParams(window.location.search);
+let cls = params.get("class");
+let stream = params.get("stream");
+
+let title = document.getElementById("title");
+let content = document.getElementById("content");
+
+// function to open notes page
+function openNotes(sub) {
+  window.location.href = "notes.html?subject=" + sub;
+}
+
+if (cls == 11 || cls == 12) {
+  title.innerText = "Class " + cls + " - " + stream;
+
+  content.innerHTML = `
+    <div class="card" onclick="openNotes('Physics')">📘 Physics</div>
+    <div class="card" onclick="openNotes('Chemistry')">📗 Chemistry</div>
+    <div class="card" onclick="openNotes('Maths')">📙 Maths</div>
+    <div class="card" onclick="openNotes('English')">📕 English</div>
+  `;
+} else {
+  title.innerText = "Class " + cls;
+
+  content.innerHTML = `
+    <div class="card" onclick="openNotes('Maths')">📘 Maths</div>
+    <div class="card" onclick="openNotes('Science')">📗 Science</div>
+    <div class="card" onclick="openNotes('English')">📙 English</div>
+    <div class="card" onclick="openNotes('Social')">📕 Social Studies</div>
+  `;
+}
+
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>
