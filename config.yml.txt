@@ -1,0 +1,28 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "index.html"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - { label: "Content", name: "content", widget: "text" }
+
+      - file: "next.html"
+        label: "Next Page"
+        name: "next"
+        fields:
+          - { label: "Content", name: "content", widget: "text" }
+
+      - file: "final.html"
+        label: "Final Page"
+        name: "final"
+        fields:
+          - { label: "Content", name: "content", widget: "text" }
